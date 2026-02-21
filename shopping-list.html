@@ -232,13 +232,12 @@
     <p class="empty-msg" id="emptyMsg" style="display:none;">아직 항목이 없습니다.</p>
   </div>
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
     const SUPABASE_URL = 'https://suplwkiurtyheoofzdil.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cGx3a2l1cnR5aGVvb2Z6ZGlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2NDUwNzksImV4cCI6MjA4NzIyMTA3OX0.pfuz7spOvYprq6tUhBE1tMe5PaE_WELi3YLKQu1Hi8M';
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     let items = [];
 
@@ -386,10 +385,6 @@
     document.getElementById('itemInput').addEventListener('keydown', e => {
       if (e.key === 'Enter') addItem();
     });
-
-    // 전역 함수로 노출 (onclick 속성에서 사용)
-    window.addItem = addItem;
-    window.clearChecked = clearChecked;
 
     loadItems();
   </script>
